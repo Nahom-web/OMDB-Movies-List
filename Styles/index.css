@@ -3,19 +3,29 @@ body{
 }
 
 header{
-    font-style: italic;
-    display: grid;
-    grid-template-columns: 1fr 30fr;
-    background-color: #343a40;
-    color: green;
-}
-
-
-#shoppiesTitle{
-    color: #004c3f;
-    width: 100%;
+    position: relative;
     text-align: center;
 }
+
+header h1{
+    color: white;
+    text-align: center;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+}
+
+header #headerImage{
+    height: 5%;
+    width: 100%;
+    top: 0;
+}
+
 
 .input-group{
     width: 70%;
@@ -115,31 +125,12 @@ button#searchMovie:hover{
     color: darkblue;
 }
 
-#nominations-submission, #submitMovies{
-    text-align: center;
-}
-
 #numberOfNominations{
     font-size: 2em;
 }
 
 .deleteButtons{
     background-color: red;
-}
-
-#errorMessage{
-    color: red;
-}
-
-#submitMovies{
-    background-color: #0fb85c;
-    color: black;
-    font-size: 1.5em;
-}
-
-#submitMovies:hover{
-    background-color: greenyellow;
-    box-shadow: 0 8px 6px -6px black;
 }
 
 #numberOfNominations{
@@ -170,18 +161,17 @@ footer p{
 
 @media all and (min-width: 768px) {
 
+    header h1{
+        font-size: 3em;
+    }
+
+    header #headerImage{
+        height: 0.0000001%;
+    }
 
     #content{
         margin-left: 6em;
         margin-right: 6em;
-    }
-
-    header h1{
-        margin-left: 2.5em;
-    }
-
-    #shoppiesTitle{
-        text-align: left;
     }
 
     .input-group{
