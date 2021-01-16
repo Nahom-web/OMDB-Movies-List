@@ -49,6 +49,7 @@ button#searchMovie:hover{
     display: grid;
     grid-template-columns: 1fr;
     margin-top: 3em;
+    margin-bottom: 10em;
 }
 
 
@@ -146,6 +147,25 @@ button#searchMovie:hover{
     font-weight: bold;
 }
 
+
+/*footer*/
+
+
+footer{
+    background-color: #343a40;
+    border: 2px solid black;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    text-align: center;
+    line-height: 60px;
+    margin-top: -130px;
+    position: fixed;
+}
+
+footer p{
+    color: white;
+}
 
 
 @media all and (min-width: 768px) {

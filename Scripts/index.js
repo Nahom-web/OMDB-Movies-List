@@ -8,7 +8,6 @@ const tableValues = $$("#tableValues");
 const numberOfNominations = $$("#numberOfNominations");
 const submitMovies = $$("#submitMovies");
 const nominationsSavedMessage = $$("#nominationsSavedMessage");
-const posterImage = $$(".poster-image");
 const errorMessage = $$("#errorMessage");
 
 let moviesArr = [];
