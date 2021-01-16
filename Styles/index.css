@@ -1,0 +1,175 @@
+body{
+    background-color: #EBE5CF;
+}
+
+header{
+    font-style: italic;
+    display: grid;
+    grid-template-columns: 1fr 30fr;
+    background-color: #343a40;
+    color: green;
+}
+
+
+#shoppiesTitle{
+    color: #004c3f;
+    width: 100%;
+    text-align: center;
+}
+
+.input-group{
+    width: 70%;
+    margin: auto;
+}
+
+input#inpMovie{
+    padding: 0.6em;
+}
+
+button#searchMovie{
+    border-radius: 3px;
+    background-color: #008060;
+    color: white;
+    min-width: 5em;
+    max-width: 6em;
+}
+
+button#searchMovie:hover{
+    background-color: darkgreen;
+}
+
+#searchResult{
+    text-align: center;
+    font-weight: bold;
+}
+
+
+#container{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 3em;
+}
+
+#container-movies{
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 3em;
+}
+
+.listOfMovies {
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    justify-content: center;
+}
+
+.movieTitleWithYear{
+    text-align: center;
+}
+
+.movieButtons{
+    width: max-content;
+    height: 2em;
+    background-color: white;
+}
+
+.poster-image{
+    display: none;
+}
+
+.movieDescriptionTitle{
+    width: max-content;
+}
+
+
+
+
+#container-nominations{
+    margin-top: 3em;
+}
+
+#container-nominations #nominationsTitle{
+    color: #004c3f;
+    text-align: center;
+}
+
+#container-nominations #nominationsTitle span{
+    float: right;
+}
+
+#nominations table{
+    width: 100%;
+}
+
+.titles:hover{
+    color: darkblue;
+}
+
+#nominations-submission, #submitMovies{
+    text-align: center;
+}
+
+#numberOfNominations{
+    font-size: 2em;
+}
+
+.deleteButtons{
+    background-color: red;
+}
+
+@media all and (min-width: 768px) {
+    #content{
+        margin-left: 6em;
+        margin-right: 6em;
+    }
+
+    header h1{
+        margin-left: 2.5em;
+    }
+
+    #shoppiesTitle{
+        text-align: left;
+    }
+
+    .input-group{
+        margin: revert;
+        min-width: 40%;
+        max-width: 50%;
+    }
+
+    #searchResult{
+        text-align: left;
+    }
+
+    #container{
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1.4em;
+    }
+
+    #container-movies{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 2em;
+    }
+
+    .listOfMovies{
+        text-align: center;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        background-color: #EBE5CF;
+    }
+
+    .poster-image{
+        display: inline;
+        width: 10em;
+    }
+
+    .movieDescriptionTitle{
+        display: none;
+    }
+
+    #container-nominations{
+        margin-top: 0;
+    }
+}

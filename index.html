@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shoppies</title>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <link href="./Styles/index.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<header>
+    <h1>Shopify</h1>
+</header>
+<br>
+<br>
+<div id="content">
+    <div>
+        <h1 id="shoppiesTitle">The Shoppies</h1>
+        <div class="input-group mb-3 search">
+            <input class="form-control col-xs-3" id="inpMovie" placeholder="Type a movie title" type="text" size="20"/>
+            <button id="searchMovie">Search</button>
+        </div>
+    </div>
+    <h3 id="searchResult"></h3>
+    <div id="container">
+        <div id="container-movies">
+
+        </div>
+        <div id="container-nominations">
+            <h1 id="nominationsTitle">Nominations:</h1>
+            <span id="numberOfNominations">0/5 Movies Selected</span>
+            <div id="nominations">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                    <tr class="tableHeader">
+                        <th scope="col">Movie Title:</th>
+                        <th scope="col">Year Released:</th>
+                        <th scope="col">Action:</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableValues">
+                    </tbody>
+                </table>
+                <div id="nominations-submission">
+                    <p id="errorMessage"></p>
+                    <button id="submitMovies" disabled>Submit Movies</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="./Scripts/index.js"></script>
+</body>
+</html>
