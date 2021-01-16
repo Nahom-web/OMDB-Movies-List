@@ -2,7 +2,7 @@
 
 As part of the Front-End Developer Intern For shopify, I have build a application that seraches for OMDB movies.
 
-I have used JavaScript, HTML, CSS, and Bootstrap
+Build with JavaScript, HTML, CSS, and Bootstrap
 
 # Features
 
