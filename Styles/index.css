@@ -44,11 +44,18 @@ button#searchMovie:hover{
 }
 
 
+
 #container{
     display: grid;
     grid-template-columns: 1fr;
     margin-top: 3em;
 }
+
+
+
+/*movies results styling*/
+
+
 
 #container-movies{
     text-align: center;
@@ -72,18 +79,18 @@ button#searchMovie:hover{
 .movieButtons{
     width: max-content;
     height: 2em;
-    background-color: white;
+    background-color: #0fb85c;
+    color: white;
 }
 
 .poster-image{
     display: none;
 }
 
-.movieDescriptionTitle{
-    width: max-content;
-}
 
 
+
+/*nominations styling*/
 
 
 #container-nominations{
@@ -119,7 +126,31 @@ button#searchMovie:hover{
     background-color: red;
 }
 
+#errorMessage{
+    color: red;
+}
+
+#submitMovies{
+    background-color: #0fb85c;
+    color: black;
+    font-size: 1.5em;
+}
+
+#submitMovies:hover{
+    background-color: greenyellow;
+    box-shadow: 0 8px 6px -6px black;
+}
+
+#numberOfNominations{
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+
+
 @media all and (min-width: 768px) {
+
+
     #content{
         margin-left: 6em;
         margin-right: 6em;
@@ -143,33 +174,61 @@ button#searchMovie:hover{
         text-align: left;
     }
 
+
+
+
     #container{
         grid-template-columns: 1fr 1fr;
         grid-gap: 1.4em;
     }
 
+
+    /*movies results styling*/
+
     #container-movies{
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-gap: 2em;
+        background-color: antiquewhite;
     }
 
     .listOfMovies{
         text-align: center;
         grid-template-columns: 1fr;
         justify-items: center;
-        background-color: #EBE5CF;
+        padding: 0.5em;
     }
 
     .poster-image{
         display: inline;
         width: 10em;
+        height: 13em;
     }
 
-    .movieDescriptionTitle{
-        display: none;
-    }
+
+    /*nominations styling*/
 
     #container-nominations{
         margin-top: 0;
+        background-color: antiquewhite;
+        height: max-content;
+    }
+
+    #nominationsSavedMessage{
+        display: none;
+    }
+
+    #nominations{
+        width: 80%;
+        margin: auto;
+    }
+
+    #submitMovies{
+        font-size: 2em;
+    }
+
+    #numberOfNominations{
+        margin-left: 2.5em;
+        font-size: 2em;
+        font-weight: bold;
     }
 }

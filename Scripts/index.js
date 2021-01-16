@@ -7,6 +7,9 @@ const searchResult = $$("#searchResult");
 const tableValues = $$("#tableValues");
 const numberOfNominations = $$("#numberOfNominations");
 const submitMovies = $$("#submitMovies");
+const nominationsSavedMessage = $$("#nominationsSavedMessage");
+const posterImage = $$(".poster-image");
+const errorMessage = $$("#errorMessage");
 
 let moviesArr = [];
 let nominatedMovies = [];
@@ -56,13 +59,13 @@ searchedMovieBtn.addEventListener('click', (qualifiedName, value) => {
         for (let i in moviesArr) {
             moviesContent.innerHTML += `<div class="listOfMovies">
                                             ${moviesArr[i].getPosterImage()}
-                                            <p class="movieTitleWithYear"><span>${count+1}. </span>${moviesArr[i].getMovieWithYear()}</p>
+                                            <p class="movieTitleWithYear"><span>${count + 1}. </span>${moviesArr[i].getMovieWithYear()}</p>
                                             <button id="movie${count}" class="movieButtons">
                                                 Nominate
                                                 <p class="movie" hidden>${moviesArr[i]._title}</p>
                                                 <p class="year" hidden>${moviesArr[i]._year}</p>
                                                 <p class="poster" hidden>${moviesArr[i]._poster}</p>
-                                            </button>                      
+                                            </button>                                                            
                                         </div>`;
             count++;
         }
@@ -73,39 +76,42 @@ searchedMovieBtn.addEventListener('click', (qualifiedName, value) => {
 });
 
 
-let disableMovieButtons = (movie) =>{
+let disableMovieButtons = (movie) => {
     movie.disabled = true;
     movie.style.backgroundColor = "darkgreen";
 }
 
-let updateMoviesSelected = () =>{
+let updateMoviesSelected = () => {
     numberOfNominations.innerHTML = nominatedMovies.length + "/5 Movies Selected";
 }
 
 let activeNominateMovies = () => {
     let movieButtons = document.querySelectorAll('.movieButtons');
-    for (let i = 0; i < movieButtons.length; i++){
-        if (nominatedMovies.length >= 5){
+    for (let i = 0; i < movieButtons.length; i++) {
+        if (nominatedMovies.length >= 5) {
             disableMovieButtons(movieButtons[i]);
         }
     }
     movieButtons.forEach(movie => movie.addEventListener('click', (e) => {
-        submitMovies.disabled = false;
         let movieTitle = movie.querySelector('.movie');
         let year = movie.querySelector('.year');
         let poster = movie.querySelector('.poster');
         let movieId = e.target.id;
-        if (nominatedMovies.length !== 5){
-            nominatedMovies.push({"Title": movieTitle.innerHTML, "Year": year.innerHTML, "Poster": poster.innerHTML, "ID": movieId});
+        if (nominatedMovies.length !== 5) {
+            nominatedMovies.push({"Title": movieTitle.innerHTML, "Year": year.innerHTML, "ID": movieId});
             updateMoviesSelected();
             populateNominatedMovies();
             disableMovieButtons(movie);
+            nominationsSavedMessage.style.display = "none";
+        }
+        if (nominatedMovies.length === 5){
+            errorMessage.innerHTML = "";
         }
     }))
 }
 
 
-let setNominatedList = (arr) =>{
+let setNominatedList = (arr) => {
     tableValues.innerHTML = "";
     if (arr.length !== 0) {
         for (let i in arr) {
@@ -127,43 +133,51 @@ let setNominatedList = (arr) =>{
 
 let populateNominatedMovies = () => {
     setNominatedList(nominatedMovies);
-    removeMovie();
 }
 
-let removeMovie = () =>{
+let removeMovie = () => {
     let deleteButtons = document.querySelectorAll('.deleteButtons');
 
     deleteButtons.forEach(movie => movie.addEventListener('click', (e) => {
         let movieId = movie.querySelector('#movieId').innerHTML;
-        $$(`#${movieId}`).disabled = false;
-        $$(`#${movieId}`).style.backgroundColor = "white";
+        if ($$(`#${movieId}`) !== null) {
+            $$(`#${movieId}`).disabled = false;
+            $$(`#${movieId}`).style.backgroundColor = "#0fb85c";
+        }
         nominatedMovies = nominatedMovies.filter(m => m.ID !== movieId);
         setNominatedList(nominatedMovies);
+        nominationsSavedMessage.style.display = "none";
     }))
 
     updateMoviesSelected();
-
-    if (nominatedMovies.length === 0){
-        submitMovies.disabled = true;
-    }
 }
 
-submitMovies.addEventListener('click', ()=>{
-    if (nominatedMovies.length > 1){
-        for (let i in nominatedMovies){
-            localStorage.setItem(`movie${i}`,`${nominatedMovies[i].Title} (${nominatedMovies[i].Year}) Poster:${nominatedMovies[i].Poster}`);
+submitMovies.addEventListener('click', () => {
+    console.log('submit movies');
+    if (nominatedMovies.length === 5) {
+        nominationsSavedMessage.style.display = "revert";
+        nominationsSavedMessage.style.width = "100%";
+        nominationsSavedMessage.style.backgroundColor = "greenyellow";
+        nominationsSavedMessage.innerHTML = `<h2 style="text-align: center">Nominations Saved!</h2>`;
+        for (let i in nominatedMovies) {
+            localStorage.setItem(`movie${i}`, `${nominatedMovies[i].Title} (${nominatedMovies[i].Year})`);
         }
+    }
+    else{
+        errorMessage.innerHTML = "*Please Select 5 Movies";
     }
 })
 
 
-window.addEventListener('load', ()=>{
-    console.log(localStorage.length);
-    for (let i in localStorage){
-        console.log(localStorage[i]);
+window.addEventListener('load', () => {
+    let arr = [];
+    for (let [key, value] of Object.entries(localStorage)) {
+        arr.push({
+            "Title": value.substring(0, value.indexOf(' (')),
+            "Year": value.substring(value.indexOf('(')),
+            "ID": key
+        });
     }
-
-    for (let i = 0; i < localStorage.length; i++){
-        
-    }
+    nominatedMovies = arr;
+    populateNominatedMovies();
 })
