@@ -1,3 +1,6 @@
+// index.js
+// By Nahom Haile
+
 const $$ = (sel) => document.querySelector(sel);
 
 const moviesContent = $$("#container-movies");
