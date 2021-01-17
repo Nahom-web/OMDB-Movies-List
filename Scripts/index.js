@@ -43,6 +43,7 @@ let populateSearchedMovies = async () => {
                 })
                 moviesContent.innerHTML = "";
                 searchResult.innerHTML = `${moviesArr.length} Results For "${searchedMovie.value}"`;
+                searchedMovie.value = "";
                 let count = 0;
                 for (let i in moviesArr) {
                     moviesContent.innerHTML += `<div class="listOfMovies">
@@ -60,6 +61,7 @@ let populateSearchedMovies = async () => {
                 activeNominateMovies();
             } else {
                 moviesContent.innerHTML = "<h1>No Movies Found</h1>";
+                searchResult.innerHTML = "";
             }
         })
         .catch(err => {
@@ -117,12 +119,15 @@ let setNominatedList = (arr) => {
                                         <td class="titles">${arr[i].Title}</td>
                                         <td>${arr[i].Year}</td>
                                         <td>
-                                            <button class="deleteButtons">
+                                            <a class="deleteButtons">
+                                                <img src="./Images/deleteIcon.svg" alt="delete icon" id="deleteIconImg">
                                                 <p id="movieId" hidden>${arr[i].ID}</p>
-                                            </button>                                            
+                                            </a>                                            
                                         </td>
                                       </tr>`;
         }
+
+        // https://freeicons.io/filter/popular/all/trash?page=1
     }
     removeMovie();
 }
@@ -148,20 +153,6 @@ let removeMovie = () => {
 
     updateMoviesSelected();
 }
-
-// submitMovies.addEventListener('click', () => {
-//     console.log('submit movies');
-//     if (nominatedMovies.length === 5) {
-//         nominationsSavedMessage.style.display = "revert";
-//         nominationsSavedMessage.style.width = "100%";
-//         nominationsSavedMessage.style.backgroundColor = "greenyellow";
-//         nominationsSavedMessage.innerHTML = `<h2 style="text-align: center">Nominations Saved!</h2>`;
-//         for (let i in nominatedMovies) {
-//             localStorage.setItem(`movie${i}`, `${nominatedMovies[i].Title} (${nominatedMovies[i].Year})`);
-//         }
-//     }
-// })
-
 
 window.addEventListener('load', () => {
     let arr = [];
