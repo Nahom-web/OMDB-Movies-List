@@ -71,20 +71,21 @@ let populateSearchedMovies = async () => {
 
 searchedMovieBtn.addEventListener('click', populateSearchedMovies);
 
+searchedMovie.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        populateSearchedMovies();
+    }
+});
+
 let activeNominateMovies = () => {
     let movieButtons = document.querySelectorAll('.movieButtons');
-    for (let i = 0; i < movieButtons.length; i++) {
-        if (nominatedMovies.length >= 5) {
-            disableMovieButtons(movieButtons[i]);
-        }
-    }
     movieButtons.forEach(movie => movie.addEventListener('click', (e) => {
         let movieTitle = movie.querySelector('.movie');
         let year = movie.querySelector('.year');
-        let poster = movie.querySelector('.poster');
         let movieId = e.target.id;
+        let yearStr = `(${year.innerHTML})`;
         if (nominatedMovies.length !== 5) {
-            nominatedMovies.push({"Title": movieTitle.innerHTML, "Year": year.innerHTML, "ID": movieId});
+            nominatedMovies.push({"Title": movieTitle.innerHTML, "Year": yearStr, "ID": movieId});
             updateMoviesSelected();
             populateNominatedMovies();
             disableMovieButtons(movie);
@@ -93,10 +94,10 @@ let activeNominateMovies = () => {
         if (nominatedMovies.length === 5) {
             nominationsSavedMessage.style.display = "revert";
             nominationsSavedMessage.style.width = "100%";
-            nominationsSavedMessage.style.backgroundColor = "greenyellow";
-            nominationsSavedMessage.innerHTML = `<h2 style="text-align: center">Nominations Saved!</h2>`;
+            nominationsSavedMessage.innerHTML = `<h4 class="alert-heading">Nominations Submitted!</h4>
+                                                 <p>Aww yeah, you successfully submitted your 5 nominated Movies</p>`;
             for (let i in nominatedMovies) {
-                localStorage.setItem(`movie${i}`, `${nominatedMovies[i].Title} (${nominatedMovies[i].Year})`);
+                localStorage.setItem(`movie${i}`, `${nominatedMovies[i].Title} ${nominatedMovies[i].Year}`);
             }
         }
     }))
@@ -104,11 +105,27 @@ let activeNominateMovies = () => {
 
 let disableMovieButtons = (movie) => {
     movie.disabled = true;
-    movie.style.backgroundColor = "darkgreen";
+    movie.style.backgroundColor = "grey";
+    movie.innerHTML = "Nominated";
+}
+
+let enableMovieButtons = (movie) => {
+    movie.disabled = false;
+    movie.style.backgroundColor = "#0fb85c";
+    movie.innerHTML = "Nominate";
 }
 
 let updateMoviesSelected = () => {
-    numberOfNominations.innerHTML = nominatedMovies.length + "/5 Movies Selected";
+    if (nominatedMovies.length >= 1){
+        numberOfNominations.innerHTML = nominatedMovies.length + "/5 Movies Selected";
+    }
+    if (nominatedMovies.length === 5) {
+        numberOfNominations.innerHTML = "";
+    }
+    if (nominatedMovies.length === 0) {
+        numberOfNominations.innerHTML = "";
+        tableValues.innerHTML = `<tr class="bg-light"><td colspan="3">No Movies Nominated</td></tr>`;
+    }
 }
 
 let setNominatedList = (arr) => {
@@ -128,13 +145,17 @@ let setNominatedList = (arr) => {
         }
 
         // https://freeicons.io/filter/popular/all/trash?page=1
+        removeMovie();
     }
-    removeMovie();
 }
 
 
 let populateNominatedMovies = () => {
-    setNominatedList(nominatedMovies);
+    if (nominatedMovies.length !== 0) {
+        setNominatedList(nominatedMovies);
+    } else {
+        tableValues.innerHTML = `<tr class="bg-light"><td colspan="3">No Movies Nominated</td></tr>`;
+    }
 }
 
 let removeMovie = () => {
@@ -145,13 +166,13 @@ let removeMovie = () => {
         if ($$(`#${movieId}`) !== null) {
             $$(`#${movieId}`).disabled = false;
             $$(`#${movieId}`).style.backgroundColor = "#0fb85c";
+            $$(`#${movieId}`).innerHTML = "Nominate";
         }
         nominatedMovies = nominatedMovies.filter(m => m.ID !== movieId);
         setNominatedList(nominatedMovies);
         nominationsSavedMessage.style.display = "none";
+        updateMoviesSelected();
     }))
-
-    updateMoviesSelected();
 }
 
 window.addEventListener('load', () => {
@@ -164,5 +185,6 @@ window.addEventListener('load', () => {
         });
     }
     nominatedMovies = arr;
+    // enableMovieButtons();
     populateNominatedMovies();
 })

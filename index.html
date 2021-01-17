@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="upgrade-insecure-requests" http-equiv="Content-Security-Policy">
-    <title>Shoppies</title>
+    <title>The Shoppies</title>
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
     <link href="./Styles/index.css" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" type="image/jpg" href="./Images/faviconImage.png"/>
+<!--    Source: https://freeicons.io/filter/popular/all/movie-->
 </head>
-<header>
+<body>
+<header class="jumbotron">
     <h1>THE SHOPPIES</h1>
-    <h3>Movie awards for entrepreneurs</h3>
+    <h4>Movie awards for entrepreneurs</h4>
 </header>
 <div id="container-page">
     <div id="content">
+        <div class="alert alert-success text-center" id="nominationsSavedMessage" role="alert">
+        </div>
         <div>
             <div class="input-group mb-3 search">
                 <input class="form-control col-xs-3" id="inpMovie" placeholder="Type a movie title" size="20"
@@ -23,23 +28,21 @@
             </div>
         </div>
         <h3 id="searchResult"></h3>
-        <div id="nominationsSavedMessage">
-
-        </div>
         <div id="container">
             <div id="container-movies">
 
             </div>
             <div id="container-nominations">
-                <h1 id="nominationsTitle">Nominations:</h1>
-                <span id="numberOfNominations">0/5 Movies Selected</span>
+                <h1 id="nominationsTitle">Nominations</h1>
+                <hr class="bg-dark"/>
+                <span id="numberOfNominations"></span>
                 <div id="nominations">
                     <table class="table table-bordered table-hover">
                         <thead class="thead-dark">
                         <tr class="tableHeader">
-                            <th scope="col">Movie Title:</th>
-                            <th scope="col">Year Released:</th>
-                            <th scope="col">Action:</th>
+                            <th scope="col">Movie Title</th>
+                            <th scope="col">Year Released</th>
+                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody id="tableValues">
