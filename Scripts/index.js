@@ -51,7 +51,7 @@ let populateSearchedMovies = async () => {
                 for (let i in moviesArr) {
                     moviesContent.innerHTML += `<div class="listOfMovies">
                                             ${moviesArr[i].getPosterImage()}
-                                            <p class="movieTitleWithYear">${moviesArr[i].getMovieWithYear()}</p>
+                                            <div class="movieTitleWithYear">${moviesArr[i].getMovieWithYear()}</div>
                                             <button id="movie${count}" class="movieButtons">
                                                 <p class="nominateText">Nominate</p>
                                                 <p class="movie" hidden>${moviesArr[i]._title}</p>
@@ -111,9 +111,9 @@ let addToNominatedMovies = (movie, movieTitle, yearStr, movieId) =>{
 let savedNominationsMessage = () =>{
     nominationsSavedMessage.style.display = "revert";
     nominationsSavedMessage.style.width = "100%";
-    nominationsSavedMessage.style.position = "-webkit-sticky";
-    nominationsSavedMessage.style.position = "sticky";
-    nominationsSavedMessage.style.top = "0";
+    // nominationsSavedMessage.style.position = "-webkit-sticky";
+    // nominationsSavedMessage.style.position = "sticky";
+    // nominationsSavedMessage.style.top = "0";
     nominationsSavedMessage.innerHTML = `<h4 class="alert-heading">Nominations Submitted!</h4>
                                                  <p>Aww yeah, you successfully submitted your 5 nominated Movies</p>`;
 }

@@ -205,7 +205,10 @@ footer p{
     #container{
         grid-template-columns: 4fr 8fr;
         grid-gap: 1.4em;
+        -ms-grid-row-align: center;
     }
+
+
 
 
     /*movies results styling*/
@@ -223,6 +226,7 @@ footer p{
         grid-template-columns: 1fr;
         justify-items: center;
         padding: 0.5em;
+        max-height: 450px;
     }
 
     .poster-image{
@@ -237,6 +241,9 @@ footer p{
 
     .movieTitleWithYear{
         text-align: center;
+        /*padding-bottom: 3em;*/
+        margin-bottom: 0;
+        min-height: 6em;
     }
 
 
@@ -288,7 +295,7 @@ footer p{
 @media all and (min-width: 1758px) {
     #container{
         grid-template-columns: 8fr 4fr;
-        grid-gap: 1.4em;
+        grid-gap: 3em;
     }
     #container-movies{
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
