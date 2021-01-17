@@ -15,7 +15,7 @@ Build with JavaScript, jQuery, HTML, CSS, and Bootstrap
 5. Can Save the nomination list once it reaches 5 movies
 6. Once you leave the site and go back on, your nominated movies displays back on the list
 
-Hosted Site:
+Hosted Site: https://romantic-haibt-349e79.netlify.app/
 
 # Downloaded Version Use
 
