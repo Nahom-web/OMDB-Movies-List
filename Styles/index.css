@@ -108,6 +108,7 @@ button#searchMovie:hover{
 
 .movieTitleWithYear{
     text-align: right;
+    font-weight: bold;
 }
 
 .movieButtons{

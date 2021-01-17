@@ -94,6 +94,7 @@ let activeNominateMovies = () => {
             addToNominatedMovies(movie, movieTitle, yearStr, movieId);
         }
         if (nominatedMovies.length === 5) {
+            savedNominationsMessage();
             saveNominatedMovies();
         }
     }))
@@ -107,7 +108,7 @@ let addToNominatedMovies = (movie, movieTitle, yearStr, movieId) =>{
     nominationsSavedMessage.style.display = "none";
 }
 
-let saveNominatedMovies = () =>{
+let savedNominationsMessage = () =>{
     nominationsSavedMessage.style.display = "revert";
     nominationsSavedMessage.style.width = "100%";
     nominationsSavedMessage.style.position = "-webkit-sticky";
@@ -115,6 +116,10 @@ let saveNominatedMovies = () =>{
     nominationsSavedMessage.style.top = "0";
     nominationsSavedMessage.innerHTML = `<h4 class="alert-heading">Nominations Submitted!</h4>
                                                  <p>Aww yeah, you successfully submitted your 5 nominated Movies</p>`;
+}
+
+
+let saveNominatedMovies = () =>{
     for (let i in nominatedMovies) {
         localStorage.setItem(`movie${i}`, `${nominatedMovies[i].Title} ${nominatedMovies[i].Year}`);
     }
@@ -204,5 +209,8 @@ window.addEventListener('load', () => {
         });
     }
     nominatedMovies = arr;
+    if (nominatedMovies.length === 5){
+        savedNominationsMessage();
+    }
     populateNominatedMovies();
 })
