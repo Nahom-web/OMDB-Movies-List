@@ -94,6 +94,9 @@ let activeNominateMovies = () => {
         if (nominatedMovies.length === 5) {
             nominationsSavedMessage.style.display = "revert";
             nominationsSavedMessage.style.width = "100%";
+            nominationsSavedMessage.style.position = "-webkit-sticky";
+            nominationsSavedMessage.style.position = "sticky";
+            nominationsSavedMessage.style.top = "0";
             nominationsSavedMessage.innerHTML = `<h4 class="alert-heading">Nominations Submitted!</h4>
                                                  <p>Aww yeah, you successfully submitted your 5 nominated Movies</p>`;
             for (let i in nominatedMovies) {
