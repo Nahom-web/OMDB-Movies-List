@@ -125,10 +125,6 @@ button#searchMovie:hover{
     color: darkblue;
 }
 
-#numberOfNominations{
-    font-size: 2em;
-}
-
 .deleteButtons{
     background-color: red;
 }
@@ -169,10 +165,7 @@ footer p{
         height: 0.0000001%;
     }
 
-    #content{
-        margin-left: 6em;
-        margin-right: 6em;
-    }
+
 
     .input-group{
         margin: revert;
@@ -188,7 +181,7 @@ footer p{
 
 
     #container{
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 2fr 10fr;
         grid-gap: 1.4em;
     }
 
@@ -196,7 +189,7 @@ footer p{
     /*movies results styling*/
 
     #container-movies{
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
         grid-gap: 2em;
         background-color: antiquewhite;
     }
@@ -221,6 +214,7 @@ footer p{
         margin-top: 0;
         background-color: antiquewhite;
         height: max-content;
+        text-align: center;
     }
 
     #nominationsSavedMessage{
@@ -237,8 +231,37 @@ footer p{
     }
 
     #numberOfNominations{
-        margin-left: 2.5em;
         font-size: 2em;
         font-weight: bold;
+        text-align: center;
     }
 }
+
+
+@media all and (min-width: 1224px) {
+    #content{
+        margin-left: 6em;
+        margin-right: 6em;
+    }
+
+    #container-movies{
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media all and (min-width: 1762px){
+    #container-movies{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+
+@media all and (min-width: 2321px) {
+    #container-movies{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+
+
