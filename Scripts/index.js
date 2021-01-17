@@ -53,10 +53,11 @@ let populateSearchedMovies = async () => {
                                             ${moviesArr[i].getPosterImage()}
                                             <p class="movieTitleWithYear">${moviesArr[i].getMovieWithYear()}</p>
                                             <button id="movie${count}" class="movieButtons">
-                                                Nominate
+                                                <p class="nominateText">Nominate</p>
                                                 <p class="movie" hidden>${moviesArr[i]._title}</p>
                                                 <p class="year" hidden>${moviesArr[i]._year}</p>
                                                 <p class="poster" hidden>${moviesArr[i]._poster}</p>
+                                                <p class="movieId" hidden>movie${count}</p>
                                             </button>
                                         </div>`;
                     count++;
@@ -72,6 +73,7 @@ let populateSearchedMovies = async () => {
         })
 }
 
+
 searchedMovieBtn.addEventListener('click', populateSearchedMovies);
 
 searchedMovie.addEventListener("keyup", function(event) {
@@ -85,40 +87,37 @@ let activeNominateMovies = () => {
     movieButtons.forEach(movie => movie.addEventListener('click', (e) => {
         let movieTitle = movie.querySelector('.movie');
         let year = movie.querySelector('.year');
-        let movieId = e.target.id;
+        let movieId = movie.querySelector('.movieId');
         let yearStr = `(${year.innerHTML})`;
+        console.log(`Title: ${movieTitle.innerHTML}. Year: ${year.innerHTML}. Id: ${movieId.innerHTML}.`);
         if (nominatedMovies.length !== 5) {
-            nominatedMovies.push({"Title": movieTitle.innerHTML, "Year": yearStr, "ID": movieId});
-            updateMoviesSelected();
-            populateNominatedMovies();
-            disableMovieButtons(movie);
-            nominationsSavedMessage.style.display = "none";
+            addToNominatedMovies(movie, movieTitle, yearStr, movieId);
         }
         if (nominatedMovies.length === 5) {
-            nominationsSavedMessage.style.display = "revert";
-            nominationsSavedMessage.style.width = "100%";
-            nominationsSavedMessage.style.position = "-webkit-sticky";
-            nominationsSavedMessage.style.position = "sticky";
-            nominationsSavedMessage.style.top = "0";
-            nominationsSavedMessage.innerHTML = `<h4 class="alert-heading">Nominations Submitted!</h4>
-                                                 <p>Aww yeah, you successfully submitted your 5 nominated Movies</p>`;
-            for (let i in nominatedMovies) {
-                localStorage.setItem(`movie${i}`, `${nominatedMovies[i].Title} ${nominatedMovies[i].Year}`);
-            }
+            saveNominatedMovies();
         }
     }))
 }
 
-let disableMovieButtons = (movie) => {
-    movie.disabled = true;
-    movie.style.backgroundColor = "grey";
-    movie.innerHTML = "Nominated";
+let addToNominatedMovies = (movie, movieTitle, yearStr, movieId) =>{
+    nominatedMovies.push({"Title": movieTitle.innerHTML, "Year": yearStr, "ID": movieId.innerHTML});
+    updateMoviesSelected();
+    populateNominatedMovies();
+    disableMovieButton(movie);
+    nominationsSavedMessage.style.display = "none";
 }
 
-let enableMovieButtons = (movie) => {
-    movie.disabled = false;
-    movie.style.backgroundColor = "#0fb85c";
-    movie.innerHTML = "Nominate";
+let saveNominatedMovies = () =>{
+    nominationsSavedMessage.style.display = "revert";
+    nominationsSavedMessage.style.width = "100%";
+    nominationsSavedMessage.style.position = "-webkit-sticky";
+    nominationsSavedMessage.style.position = "sticky";
+    nominationsSavedMessage.style.top = "0";
+    nominationsSavedMessage.innerHTML = `<h4 class="alert-heading">Nominations Submitted!</h4>
+                                                 <p>Aww yeah, you successfully submitted your 5 nominated Movies</p>`;
+    for (let i in nominatedMovies) {
+        localStorage.setItem(`movie${i}`, `${nominatedMovies[i].Title} ${nominatedMovies[i].Year}`);
+    }
 }
 
 let updateMoviesSelected = () => {
@@ -132,6 +131,28 @@ let updateMoviesSelected = () => {
         numberOfNominations.innerHTML = "";
         tableValues.innerHTML = `<tr class="bg-light"><td colspan="3">No Movies Nominated</td></tr>`;
     }
+}
+
+let populateNominatedMovies = () => {
+    if (nominatedMovies.length !== 0) {
+        setNominatedList(nominatedMovies);
+    } else {
+        tableValues.innerHTML = `<tr class="bg-light"><td colspan="3">No Movies Nominated</td></tr>`;
+    }
+}
+
+let disableMovieButton = (btn) => {
+    btn.disabled = true;
+    btn.style.backgroundColor = "grey";
+    let nominateText = btn.querySelector('.nominateText');
+    nominateText.innerHTML = "Nominated";
+}
+
+let enableMovieButton = (btn) =>{
+    btn.disabled = false;
+    btn.style.backgroundColor = "#0fb85c";
+    let nominateText = btn.querySelector('.nominateText');
+    nominateText.innerHTML = "Nominate";
 }
 
 let setNominatedList = (arr) => {
@@ -155,26 +176,18 @@ let setNominatedList = (arr) => {
     }
 }
 
-
-let populateNominatedMovies = () => {
-    if (nominatedMovies.length !== 0) {
-        setNominatedList(nominatedMovies);
-    } else {
-        tableValues.innerHTML = `<tr class="bg-light"><td colspan="3">No Movies Nominated</td></tr>`;
-    }
-}
-
 let removeMovie = () => {
     let deleteButtons = document.querySelectorAll('.deleteButtons');
 
     deleteButtons.forEach(movie => movie.addEventListener('click', (e) => {
-        let movieId = movie.querySelector('#movieId').innerHTML;
-        if ($$(`#${movieId}`) !== null) {
-            $$(`#${movieId}`).disabled = false;
-            $$(`#${movieId}`).style.backgroundColor = "#0fb85c";
-            $$(`#${movieId}`).innerHTML = "Nominate";
+        let movieId = movie.querySelector('#movieId');
+        console.log(movie);
+        let btnId = document.querySelector(`#${movieId.innerHTML}`);
+        console.log(btnId);
+        if (btnId !== null) {
+            enableMovieButton(btnId);
         }
-        nominatedMovies = nominatedMovies.filter(m => m.ID !== movieId);
+        nominatedMovies = nominatedMovies.filter(m => m.ID !== movieId.innerHTML);
         setNominatedList(nominatedMovies);
         nominationsSavedMessage.style.display = "none";
         updateMoviesSelected();
@@ -191,6 +204,5 @@ window.addEventListener('load', () => {
         });
     }
     nominatedMovies = arr;
-    // enableMovieButtons();
     populateNominatedMovies();
 })

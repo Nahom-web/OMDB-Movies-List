@@ -89,6 +89,9 @@ button#searchMovie:hover{
     display: grid;
     grid-template-columns: 1fr;
     grid-row-gap: 3em;
+    overflow: auto;
+    height: 25em;
+    border: 2px solid black;
 }
 
 .listOfMovies {
@@ -96,8 +99,11 @@ button#searchMovie:hover{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
-    /*justify-items: center;*/
-    /*justify-content: center;*/
+    padding-top: 1em;
+}
+
+.listOfMovies:nth-child(odd){
+    background-color: whitesmoke;
 }
 
 .movieTitleWithYear{
@@ -207,6 +213,8 @@ footer p{
         grid-template-columns: 1fr;
         grid-gap: 2em;
         background-color: whitesmoke;
+        overflow: revert;
+        height: auto;
     }
 
     .listOfMovies{
@@ -258,6 +266,7 @@ footer p{
 @media all and (min-width: 948px) {
     #container-movies{
         grid-template-columns: 1fr 1fr;
+        width: auto;
     }
 }
 
