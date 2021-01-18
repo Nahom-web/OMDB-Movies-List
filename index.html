@@ -11,8 +11,8 @@
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
     <link href="./Styles/index.css" rel="stylesheet" type="text/css"/>
-    <link rel="shortcut icon" type="image/jpg" href="./Images/faviconImage.png"/>
-<!--    Source: https://freeicons.io/filter/popular/all/movie-->
+    <link href="./Images/faviconImage.png" rel="shortcut icon" type="image/jpg"/>
+    <!--    Source: https://freeicons.io/filter/popular/all/movie-->
 </head>
 <body>
 <header class="jumbotron">
@@ -27,7 +27,7 @@
             <div class="input-group mb-3 search">
                 <input class="form-control col-xs-3" id="inpMovie" placeholder="Type a movie title" size="20"
                        type="text"/>
-                <button id="searchMovie">Search</button>
+                <button id="searchMovie" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Search for a Movie">Search</button>
             </div>
         </div>
         <h3 id="searchResult"></h3>

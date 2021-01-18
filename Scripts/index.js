@@ -52,7 +52,7 @@ let populateSearchedMovies = async () => {
                     moviesContent.innerHTML += `<div class="listOfMovies">
                                             ${moviesArr[i].getPosterImage()}
                                             <div class="movieTitleWithYear">${moviesArr[i].getMovieWithYear()}</div>
-                                            <button id="movie${count}" class="movieButtons">
+                                            <button id="movie${count}" class="movieButtons" type="button" data-toggle="tooltip" data-placement="top" title="Nominate a Movie">
                                                 <p class="nominateText">Nominate</p>
                                                 <p class="movie" hidden>${moviesArr[i]._title}</p>
                                                 <p class="year" hidden>${moviesArr[i]._year}</p>
@@ -168,7 +168,7 @@ let setNominatedList = (arr) => {
                                         <td class="titles">${arr[i].Title}</td>
                                         <td>${arr[i].Year}</td>
                                         <td>
-                                            <a class="deleteButtons">
+                                            <a class="deleteButtons" data-toggle="tooltip" data-placement="top" title="Remove This Movie">
                                                 <img src="./Images/deleteIcon.svg" alt="delete icon" id="deleteIconImg">
                                                 <p id="movieId" hidden>${arr[i].ID}</p>
                                             </a>                                            

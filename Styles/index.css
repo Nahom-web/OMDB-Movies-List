@@ -131,7 +131,6 @@ button#searchMovie:hover{
     display: none;
 }
 
-
 #container-nominations{
     margin-top: 3em;
     background-color: antiquewhite;
@@ -163,6 +162,9 @@ button#searchMovie:hover{
 #deleteIconImg{
     width: 3em;
     height: 2em;
+}
+
+#deleteIconImg{
     filter: invert(42%) sepia(82%) saturate(1873%) hue-rotate(344deg) brightness(94%) contrast(86%);
 }
 
