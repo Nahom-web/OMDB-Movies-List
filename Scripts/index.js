@@ -26,7 +26,7 @@ class Movie {
     }
 
     getPosterImage = () => {
-        return `<img src="${this._poster}" alt="Poster N/A" class="poster-image" />`;
+        return `<img src="${this._poster}" alt="${this._title}'s Posters Image is N/A" class="poster-image" />`;
     }
 }
 
@@ -49,7 +49,7 @@ let populateSearchedMovies = async () => {
                 searchedMovie.value = "";
                 let count = 0;
                 for (let i in moviesArr) {
-                    moviesContent.innerHTML += `<div class="listOfMovies">
+                    moviesContent.innerHTML += `<div class="listOfMovies" data-toggle="tooltip" data-placement="top" title="${moviesArr[i].getMovieWithYear()}">
                                             ${moviesArr[i].getPosterImage()}
                                             <div class="movieTitleWithYear">${moviesArr[i].getMovieWithYear()}</div>
                                             <button id="movie${count}" class="movieButtons" type="button" data-toggle="tooltip" data-placement="top" title="Nominate a Movie">
@@ -111,9 +111,6 @@ let addToNominatedMovies = (movie, movieTitle, yearStr, movieId) =>{
 let savedNominationsMessage = () =>{
     nominationsSavedMessage.style.display = "revert";
     nominationsSavedMessage.style.width = "100%";
-    // nominationsSavedMessage.style.position = "-webkit-sticky";
-    // nominationsSavedMessage.style.position = "sticky";
-    // nominationsSavedMessage.style.top = "0";
     nominationsSavedMessage.innerHTML = `<h4 class="alert-heading">Nominations Submitted!</h4>
                                                  <p>Aww yeah, you successfully submitted your 5 nominated Movies</p>`;
 }
