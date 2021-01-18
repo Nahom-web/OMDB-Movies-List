@@ -52,7 +52,7 @@ let populateSearchedMovies = async () => {
                     moviesContent.innerHTML += `<div class="listOfMovies" data-toggle="tooltip" data-placement="top" title="${moviesArr[i].getMovieWithYear()}">
                                             ${moviesArr[i].getPosterImage()}
                                             <div class="movieTitleWithYear">${moviesArr[i].getMovieWithYear()}</div>
-                                            <button id="movie${count}" class="movieButtons" type="button" data-toggle="tooltip" data-placement="top" title="Nominate a Movie">
+                                            <button id="movie${count}" class="movieButtons" type="button" data-toggle="tooltip" data-placement="top" title="Nominate ${moviesArr[i].getMovieWithYear()}">
                                                 <p class="nominateText">Nominate</p>
                                                 <p class="movie" hidden>${moviesArr[i]._title}</p>
                                                 <p class="year" hidden>${moviesArr[i]._year}</p>
